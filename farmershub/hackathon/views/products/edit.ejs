@@ -1,0 +1,78 @@
+<% layout('layouts/boilerplate') %>
+
+<!-- Main Content -->
+<div class="container my-5">
+    <h1 class="text-center text-success mb-5">Edit Product</h1>
+
+    <!-- Edit Product Form -->
+    <form action="/products/<%= product._id %>?_method=PUT" method="POST">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                
+                <!-- Product Name -->
+                <div class="mb-3">
+                    <label for="name" class="form-label">Product Name</label>
+                    <input type="text" class="form-control" id="name" name="product[name]" value="<%= product.name %>" required>
+                </div>
+
+                <!-- Description -->
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" id="description" name="product[description]" rows="4" required><%= product.description %></textarea>
+                </div>
+
+                <!-- Product Type -->
+                <div class="mb-3">
+                    <label for="type" class="form-label">Product Type</label>
+                    <input type="text" class="form-control" id="type" name="product[type]" value="<%= product.type %>" required>
+                </div>
+
+                <!-- Category -->
+                <div class="mb-3">
+                    <label for="category" class="form-label">Category</label>
+                    <select class="form-select" id="category" name="product[category]" required>
+                        <option value="Fruits" <%= product.category === 'Fruits' ? 'selected' : '' %>>Fruits</option>
+                        <option value="Vegetables" <%= product.category === 'Vegetables' ? 'selected' : '' %>>Vegetables</option>
+                        <option value="Equipment" <%= product.category === 'Equipment' ? 'selected' : '' %>>Equipment</option>
+                        <option value="Crop Nutrition" <%= product.category === 'Crop Nutrition' ? 'selected' : '' %>>Crop Nutrition</option>
+                        <option value="Seeds" <%= product.category === 'Seeds' ? 'selected' : '' %>>Seeds</option>
+                        <option value="Grains" <%= product.category === 'Grains' ? 'selected' : '' %>>Grains</option>
+                    </select>
+                </div>
+
+                <!-- Price -->
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price (₹)</label>
+                    <input type="number" class="form-control" id="price" name="product[price]" value="<%= product.price %>" step="0.01" required>
+                </div>
+
+                <!-- Stock -->
+                <div class="mb-3">
+                    <label for="stock" class="form-label">Stock</label>
+                    <input type="number" class="form-control" id="stock" name="product[stock]" value="<%= product.stock %>" required>
+                </div>
+
+                <!-- Image URL -->
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image URL</label>
+                    <input name="product[image]" type="text" class="form-control" id="image" value="<%= product.image %>">
+                </div>
+
+                <!-- Availability -->
+                <div class="form-check mb-3">
+                    <input type="checkbox" class="form-check-input" id="availability" name="product[availability]" value="true" <%= product.availability ? 'checked' : '' %>>
+                    <label class="form-check-label" for="availability">Available</label>
+                </div>
+
+                <!-- Update Button -->
+                <button type="submit" class="btn btn-primary w-100">Update Product</button>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Footer -->
+<footer class="footer bg-primary text-white text-center py-3 mt-5">
+    <p class="mb-0">© 2024 Farmers Hub</p>
+</footer>

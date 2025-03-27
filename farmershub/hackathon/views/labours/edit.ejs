@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Labour</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f9;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    input, select, textarea {
+      padding: 10px;
+      font-size: 1em;
+      margin-top: 5px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      font-size: 1.2em;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .cancel-button {
+      background-color: #dc3545;
+      margin-top: 10px;
+    }
+    .cancel-button:hover {
+      background-color: #b02a37;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Edit Labour</h1>
+    <form action="/labours/<%= labour._id %>?_method=PUT" method="POST">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="labour[name]" value="<%= labour.name %>" required>
+      
+      <label for="email">Email</label>
+      <input type="email" id="email" name="labour[email]" value="<%= labour.email %>" required>
+      
+      <label for="image">Image URL</label>
+      <input type="url" id="image" name="labour[image]" value="<%= labour.image %>">
+      
+      <label for="phone">Phone</label>
+      <input type="text" id="phone" name="labour[phone]" value="<%= labour.phone %>" required>
+      
+      <label for="skill">Skill</label>
+      <input type="text" id="skill" name="labour[skill]" value="<%= labour.skill %>" required>
+      
+      <label for="availability">Availability</label>
+      <select id="availability" name="labour[availability]">
+        <option value="true" <%= labour.availability ? "selected" : "" %>>Available</option>
+        <option value="false" <%= !labour.availability ? "selected" : "" %>>Not Available</option>
+      </select>
+      
+      <label for="location">Location</label>
+      <input type="text" id="location" name="labour[location]" value="<%= labour.location %>" required>
+      
+      <button type="submit">Update Labour</button>
+      <a href="/labours" class="cancel-button" style="text-decoration: none; display: block; text-align: center;">Cancel</a>
+    </form>
+  </div>
+</body>
+</html>

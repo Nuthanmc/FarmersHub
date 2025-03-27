@@ -1,0 +1,53 @@
+<% layout('layouts/boilerplate') %>
+<div class="container mt-5">
+    <h1 class="text-center">Edit Warehouse</h1>
+    <div class="col-md-8 offset-md-2">
+        <form action="/warehouses/<%= warehouse._id %>?_method=PUT" method="POST" novalidate class="needs-validation" >
+            <div class="mb-3">
+                <label class="form-label" for="title">Title</label>
+                <input class="form-control" type="text" id="title" name="warehouse[title]" value="<%= warehouse.title %>" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="location">Location</label>
+                <input class="form-control" type="text" id="location" name="warehouse[location]" value="<%= warehouse.location %>"required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="goodsStored">Goods Stored</label>
+                <input class="form-control" type="text" id="goodsStored" name="warehouse[goodsStored]" value="<%= warehouse.goodsStored%>" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="storageCapacity">Storage Capacity (Metric Tons)</label>
+                <input class="form-control" type="number" id="storageCapacity" name="warehouse[storageCapacity]" value="<%= warehouse.storageCapacity%>"  required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="type">Type</label>
+                <input class="form-control" type="text" id="type" name="warehouse[type]" value="<%= warehouse.type%>" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="price">Price (in ₹)</label>
+                <input class="form-control" type="number" id="price" name="warehouse[price]" value="<%= warehouse.price%>"required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="description">Description</label>
+                <textarea class="form-control" id="description" name="warehouse[description]"  required><%= warehouse.description %></textarea>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label" for="availability">Availability</label>
+                <textarea class="form-control" id="availability" name="warehouse[availability]"  required><%= warehouse.availability %></textarea>
+            </div>
+            
+        </div>
+            <div class="mb-3">
+                <label class="form-label" for="image">Image URL</label>
+                <input name="warehouse[image]" type="text" class="form-control" id="image" value="<%= warehouse.image%>">
+            </div>
+
+            <div class="mb-3">
+                <button class="btn btn-success">update Warehouse</button>
+            </div>
+            
+        </form>
+        <a class="btn btn-outline-secondary w-100 mt-3" href="/warehouses">Back to Warehouse List</a>
+    </div>
+</div>

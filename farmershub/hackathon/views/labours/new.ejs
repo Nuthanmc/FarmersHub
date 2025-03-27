@@ -1,0 +1,136 @@
+<% layout('layouts/boilerplate')%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Labour</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f9;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    input, select, textarea {
+      padding: 10px;
+      font-size: 1em;
+      margin-top: 5px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      font-size: 1.2em;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    .invalid-feedback {
+      color: red;
+      font-size: 0.875em;
+      display: none;
+    }
+    .was-validated input:invalid + .invalid-feedback {
+      display: block;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 15px;
+      }
+      button {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+ 
+  <div class="container">
+    <h1>Register as a Labour</h1>
+    <form action="/labours" method="POST" novalidate class="validated-form">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="labour[name]" placeholder="Enter labour's name" required >
+      <div class="invalid-feedback">Name is required.</div>
+      
+      <label for="email">Email</label>
+      <input type="email" id="email" name="labour[email]"  placeholder="Enter email address" required>
+      <div class="invalid-feedback">Please enter a valid email address.</div>
+      
+      <label for="image">Image URL</label>
+      <input type="url" id="image" name="labour[image]" placeholder="Enter image URL">
+      <div class="invalid-feedback">Please enter a valid image URL.</div>
+      
+      <label for="phone">Phone</label>
+      <input type="text" id="phone" name="labour[phone]"  placeholder="Enter phone number" pattern="\d{10}" title="Enter a valid 10-digit phone number" required>
+      <div class="invalid-feedback">Enter a valid 10-digit phone number.</div>
+      
+      <label for="skill">Skill</label>
+      <input type="text" id="skill" name="labour[skill]"  placeholder="Enter skill (e.g., Agricultural Labor)" required>
+      <div class="invalid-feedback">Skill is required.</div>
+      
+      <label for="availability">Availability</label>
+      <select id="availability" name="labour[availability]">
+        <option value="true">Available</option>
+        <option value="false">Not Available</option>
+      </select>
+      
+      <label for="location">Location</label>
+      <input type="text" id="location" name="labour[location]"  placeholder="Enter location (e.g., City, State)">
+      <div class="invalid-feedback">Location is required.</div>
+      
+      <div id="form-message" role="alert" style="color: red; text-align: center;"></div>
+      
+      <button type="submit">Register</button>
+    </form>
+  </div>
+
+  <script>
+    (function () {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom validation styles to
+        const forms = document.querySelectorAll('.validated-form')
+
+        // Loop over them and prevent submission
+        Array.from(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+  </script>
+</body>
+</html>

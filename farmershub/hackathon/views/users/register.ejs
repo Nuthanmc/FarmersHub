@@ -1,0 +1,63 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="row w-60">
+        <div class="col-md-10 offset-md-1 col-xl-8 offset-xl-2">
+            <div class="card shadow" style="width: 100%;">
+                <img src="https://media.istockphoto.com/id/503646746/photo/farmer-spreading-fertilizer-in-the-field-wheat.jpg?s=612x612&w=0&k=20&c=Lgxsjbz0jaYyQrvfzhyAsW2zELtshRP4AtLzkpmcLiE="
+                    alt="Registration" class="card-img-top" />
+                <div class="card-body">
+                    <h5 class="card-title text-center">Register</h5>
+                    <form action="/register" method="POST" class="validated-form" novalidate>
+                        <!-- Username -->
+                        <div class="mb-3">
+                            <label class="form-label" for="username">Username</label>
+                            <input class="form-control" type="text" id="username" name="username" required autofocus>
+                            <div class="invalid-feedback">Please provide a username.</div>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label class="form-label" for="email">Email</label>
+                            <input class="form-control" type="email" id="email" name="email" required>
+                            <div class="invalid-feedback">Please provide a valid email.</div>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="mb-3">
+                            <label class="form-label" for="password">Password</label>
+                            <input class="form-control" type="password" id="password" name="password" required>
+                            <div class="invalid-feedback">Please provide a password.</div>
+                            <div class="valid-feedback">Looks good!</div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button class="btn btn-success btn-block w-100">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Validation Script -->
+<script>
+    (function () {
+        'use strict';
+
+        const forms = document.querySelectorAll('.validated-form');
+
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    })();
+</script>
+

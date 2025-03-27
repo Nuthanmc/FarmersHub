@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Security Technologies</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #e3f2fd, #ffffff);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #4caf50, #009688);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: fadeInDown 1s ease-out;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* Search Section */
+        .search-section {
+            padding: 20px;
+            text-align: center;
+            background-color: #f4f4f4;
+            border-bottom: 2px solid #ddd;
+            margin-bottom: 30px;
+        }
+
+        .search-section input[type="text"] {
+            padding: 10px;
+            width: 60%;
+            max-width: 400px;
+            border-radius: 30px;
+            border: 2px solid #009688;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-section input[type="text"]:focus {
+            border-color: #4caf50;
+            outline: none;
+        }
+
+        .search-section button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            margin-left: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .search-section button:hover {
+            background-color: #009688;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: space-between;
+        }
+
+        /* Cards */
+        .card {
+            background: linear-gradient(145deg, #ffffff, #f9f9f9);
+            border-radius: 12px;
+            width: 30%;
+            text-align: center;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h2 {
+            font-size: 1.5rem;
+            color: #009688;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .card-content h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: #009688;
+            margin: 8px auto 0;
+            border-radius: 5px;
+        }
+
+        .card-content p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #4caf50, #009688);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            nav ul {
+                gap: 10px;
+            }
+
+            .card {
+                width: 45%;
+            }
+
+            .search-section input[type="text"] {
+                width: 80%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                width: 100%;
+            }
+
+            .search-section input[type="text"] {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Food Security Technologies</h1>
+        <nav>
+            <ul>
+                <li><a href="/foodsecurity/new">Add Technology</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Search Form -->
+    <section class="search-section">
+        <form action="/foodsecurity" method="get">
+            <input 
+                type="text" 
+                name="search" 
+                placeholder="Search by title or description" 
+                value="<%= search || '' %>" 
+                required>
+            <button type="submit">Search</button>
+        </form>
+    </section>
+
+    <!-- Results Section -->
+    <section class="container">
+        <% if (technologies && technologies.length > 0) { %>
+            <% technologies.forEach(tech => { %>
+                <div class="card">
+                    <div class="card-content">
+                        <h2><a href="/foodsecurity/<%= tech._id %>"><%= tech.title %></a></h2>
+                        <p><%= tech.description %></p>
+                    </div>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p>No technologies found matching your criteria.</p>
+        <% } %>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 FarmersHub</p>
+    </footer>
+</body>
+</html>

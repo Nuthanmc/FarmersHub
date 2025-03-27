@@ -1,0 +1,202 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="container mt-5">
+    <h1 class="text-center text-success mb-4">Add a New Product</h1>
+    <div class="col-md-8 offset-md-2">
+        <!-- Form to Create a New Product -->
+        <form action="/products" method="POST" novalidate class="needs-validation">
+            <!-- Product Name -->
+            <div class="mb-4">
+                <label class="form-label" for="name">Product Name</label>
+                <input class="form-control" type="text" id="name" name="product[name]" placeholder="Enter product name" required>
+                <div class="form-text">Name should be descriptive and unique.</div>
+            </div>
+
+            <!-- Product Type -->
+            <div class="mb-4">
+                <label class="form-label" for="type">Product Type</label>
+                <input class="form-control" type="text" id="type" name="product[type]" placeholder="Enter product type" required>
+                <div class="form-text">Examples: Electronics, Groceries, etc.</div>
+            </div>
+
+            <!-- Product Description -->
+            <div class="mb-4">
+                <label class="form-label" for="description">Description</label>
+                <textarea class="form-control" id="description" name="product[description]" rows="4" placeholder="Enter product description" required></textarea>
+                <div class="form-text">Provide a detailed description of the product.</div>
+            </div>
+
+            <!-- Product Price -->
+            <div class="mb-4">
+                <label class="form-label" for="price">Price (in ₹)</label>
+                <input class="form-control" type="number" id="price" name="product[price]" placeholder="Enter product price" required>
+                <div class="form-text">Price must be a positive value in Indian Rupees.</div>
+            </div>
+
+            <!-- Product Stock -->
+            <div class="mb-4">
+                <label class="form-label" for="stock">Stock (in quantity)</label>
+                <input class="form-control" type="number" id="stock" name="product[stock]" placeholder="Enter available stock quantity" required>
+                <div class="form-text">Provide the total number of units available in stock.</div>
+            </div>
+
+            <!-- Product Image -->
+            <div class="mb-4">
+                <label class="form-label" for="image">Image URL</label>
+                <input class="form-control" type="text" id="image" name="product[image]" placeholder="Enter image URL" required>
+                <div class="form-text">Paste a valid image URL to represent the product.</div>
+            </div>
+
+            <!-- Product Availability -->
+            <div class="mb-4">
+                <label class="form-label" for="availability">Availability</label>
+                <select class="form-control" id="availability" name="product[availability]" required>
+                    <option value="true">Available</option>
+                    <option value="false">Not Available</option>
+                </select>
+                <div class="form-text">Specify if the product is currently available for purchase.</div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="mb-4">
+                <button class="btn btn-success w-100" type="submit">Add Product</button>
+            </div>
+        </form>
+
+        <!-- Back to Product List -->
+        <a class="btn btn-outline-secondary w-100 mt-3" href="/products">Back to Product List</a>
+    </div>
+</div>
+<style>
+    /* General Styling */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f6f9;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+    }
+    
+    /* Container Styling */
+    .container {
+        max-width: 900px;
+        margin: 50px auto;
+        padding: 30px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Headings */
+    .text-center {
+        text-align: center;
+    }
+    
+    .text-success {
+        color: #28a745;
+    }
+    
+    /* Form Styling */
+    .form-label {
+        font-weight: 600;
+        color: #444;
+    }
+    
+    .form-text {
+        font-size: 0.95rem;
+        color: #777;
+    }
+    
+    .form-control {
+        border-radius: 8px;
+        padding: 12px;
+        font-size: 1rem;
+        border: 1px solid #ddd;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .form-control:focus {
+        border-color: #6f42c1;
+        box-shadow: 0 0 8px rgba(111, 66, 193, 0.2);
+        outline: none;
+    }
+    
+    /* Input fields */
+    input[type="text"],
+    input[type="number"],
+    textarea {
+        width: 100%;
+        margin-top: 8px;
+    }
+    
+    textarea {
+        resize: vertical;
+        min-height: 100px;
+    }
+    
+    /* Select Dropdown */
+    select.form-control {
+        padding: 12px;
+    }
+    
+    /* Button Styling */
+    .btn-success {
+        background-color: #28a745;
+        border: none;
+        color: #fff;
+        font-weight: 600;
+        padding: 12px;
+        border-radius: 8px;
+        width: 100%;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    
+    .btn-success:hover {
+        background-color: #218838;
+        transform: translateY(-2px);
+    }
+    
+    .btn-outline-secondary {
+        color: #6f42c1;
+        border: 2px solid #6f42c1;
+        padding: 12px;
+        font-weight: 600;
+        border-radius: 8px;
+        width: 100%;
+        text-align: center;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    
+    .btn-outline-secondary:hover {
+        background-color: #6f42c1;
+        color: #fff;
+    }
+    
+    /* Back Button */
+    a.btn-outline-secondary {
+        text-decoration: none;
+        display: block;
+        margin-top: 15px;
+    }
+    
+    /* Spacing Between Form Fields */
+    .mb-4 {
+        margin-bottom: 20px;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .container {
+            padding: 15px;
+        }
+    
+        .form-control,
+        .btn-success,
+        .btn-outline-secondary {
+            font-size: 0.95rem;
+        }
+    }
+    </style>
+    

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Food Security Technology</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9fbff;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+    
+        header {
+            background: linear-gradient(90deg, #009688, #4caf50);
+            color: white;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    
+        header h1 {
+            margin-left: 20px;
+            font-size: 1.8rem;
+            animation: fadeIn 1s ease-in;
+        }
+    
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin-right: 20px;
+        }
+    
+        nav ul li {
+            margin-left: 15px;
+        }
+    
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+    
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+    
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.8s ease-out;
+        }
+
+        /* Search Bar Styling */
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .search-bar input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            width: 70%; /* Adjust width as needed */
+            margin-right: 10px;
+        }
+
+        .search-bar button {
+            background: linear-gradient(90deg, #4caf50, #009688);
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background: linear-gradient(90deg, #009688, #4caf50);
+            transform: scale(1.05);
+        }
+    
+        form label {
+            font-weight: bold;
+            display: block;
+            margin: 20px 0 5px;
+            color: #4caf50;
+        }
+    
+        form input, form textarea, form select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+    
+        form input:focus, form textarea:focus, form select:focus {
+            border-color: #009688;
+            box-shadow: 0 0 8px rgba(0, 150, 136, 0.5);
+            outline: none;
+        }
+    
+        form textarea {
+            height: 120px;
+            resize: vertical;
+        }
+    
+        form button {
+            background: linear-gradient(90deg, #4caf50, #009688);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+    
+        form button:hover {
+            background: linear-gradient(90deg, #009688, #4caf50);
+            transform: scale(1.05);
+        }
+    
+        footer {
+            text-align: center;
+            background: #009688;
+            color: white;
+            padding: 10px 0;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+    
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    
+        @keyframes slideIn {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+    
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Add New Food Security Technology</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Search Bar -->
+    <div class="container">
+        <div class="search-bar">
+            <form action="/foodsecurity/search" method="GET">
+                <input type="text" name="search" placeholder="Search for technologies..." required>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Form Content -->
+    <div class="container">
+        <form action="/foodsecurity" method="POST">
+            <!-- Title -->
+            <label for="title">Title</label>
+            <input type="text" id="title" name="foodSecurity[title]" placeholder="Enter the title" required>
+
+            <!-- Description -->
+            <label for="description">Description</label>
+            <textarea id="description" name="foodSecurity[description]" placeholder="Enter the description" required></textarea>
+
+            <!-- Salient Features -->
+            <label for="salientFeatures">Salient Features</label>
+            <input type="text" id="salientFeatures" name="foodSecurity[salientFeatures]" placeholder="Enter salient features, separated by commas">
+
+            <!-- Benefits -->
+            <label for="benefits">Benefits</label>
+            <input type="text" id="benefits" name="foodSecurity[benefits]" placeholder="Enter benefits, separated by commas">
+
+            <!-- Cost -->
+            <label for="cost">Cost</label>
+            <input type="text" id="cost" name="foodSecurity[cost]" placeholder="Enter the cost" required>
+
+            <!-- Developer -->
+            <label for="developerName">Developer Name</label>
+            <input type="text" id="developerName" name="foodSecurity[developer][name]" placeholder="Enter developer's name" required>
+
+            <label for="developerOrganization">Developer Organization</label>
+            <input type="text" id="developerOrganization" name="foodSecurity[developer][organization]" placeholder="Enter developer's organization">
+
+            <!-- Contact Details -->
+            <label for="director">Director</label>
+            <input type="text" id="director" name="foodSecurity[contactDetails][director]" placeholder="Enter the director's name">
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="foodSecurity[contactDetails][email]" placeholder="Enter the contact email" required>
+
+            <label for="address">Address</label>
+            <textarea id="address" name="foodSecurity[contactDetails][address]" placeholder="Enter the address" required></textarea>
+
+            <label for="website">Website</label>
+            <input type="url" id="website" name="foodSecurity[contactDetails][website]" placeholder="Enter the website URL">
+
+            <!-- Submit Button -->
+            <button type="submit">Add Technology</button>
+        </form>
+    </div>
+    <footer>
+        <p>&copy; 2024 Farmers Hub</p>
+    </footer>
+</body>
+</html>

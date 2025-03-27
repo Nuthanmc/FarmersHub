@@ -1,0 +1,94 @@
+<% layout('layouts/boilerplate') %>
+<!-- <div class="row">
+    <h1 class="text-center">Add New Warehouse</h1>
+    <div class="col-md-6 offset-md-3">
+        <form action="/warehouses" method="POST" novalidate class="needs-validation" >
+            <div class="mb-3">
+                <label class="form-label" for="title">Title</label>
+                <input class="form-control" type="text" id="title" name="warehouse[title]" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="location">Location</label>
+                <input class="form-control" type="text" id="location" name="warehouse[location]" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="goodsStored">Goods Stored</label>
+                <input class="form-control" type="text" id="goodsStored" name="warehouse[goodsStored]" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="storageCapacity">Storage Capacity (In tons)</label>
+                <input class="form-control" type="number" id="storageCapacity" name="warehouse[storageCapacity]" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="type">Type</label>
+                <input class="form-control" type="text" id="type" name="warehouse[type]" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="price">Price (in ₹)</label>
+                <input class="form-control" type="number" id="price" name="warehouse[price]" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="description">Description</label>
+                <textarea class="form-control" id="description" name="warehouse[description]" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="image">Image URL</label>
+                <input name="warehouse[image]" type="text" class="form-control" id="image" placeholder="Enter Image URL" required>
+            </div>
+            
+            <div class="mb-3">
+                <button class="btn btn-success">Add Warehouse</button>
+            </div>
+        </form>
+        <a href="/warehouses">Back to Warehouses</a>
+    </div>
+</div> -->
+<div class="row">
+    <h1 class="text-center">Add New Warehouse</h1>
+    <div class="col-md-6 offset-md-3">
+        <form action="/warehouses" method="POST" novalidate class="needs-validation">
+            <div class="mb-3">
+                <label class="form-label" for="title">Warehouse Name</label>
+                <input class="form-control" type="text" id="title" name="warehouse[title]" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="location">Location</label>
+                <input class="form-control" type="text" id="location" name="warehouse[location]" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="goodsStored">Goods Stored</label>
+                <input class="form-control" type="text" id="goodsStored" name="warehouse[goodsStored]" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="storageCapacity">Storage Capacity (Metric Tons)</label>
+                <input class="form-control" type="number" id="storageCapacity" name="warehouse[storageCapacity]" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="type">Type</label>
+                <input class="form-control" type="text" id="type" name="warehouse[type]" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="price">Price (in ₹ per month)</label>
+                <input class="form-control" type="number" id="price" name="warehouse[price]" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="description">Description</label>
+                <textarea class="form-control" id="description" name="warehouse[description]" required></textarea>
+            </div>
+            <label class="form-label" for="availability">Availability</label>
+                <select class="form-control" id="availability" name="warehouse[availability]" required>
+                    <option value="true">Available</option>
+                    <option value="false">Not Available</option>
+                </select>
+            <div class="mb-3">
+                <label class="form-label" for="image">Image URL</label>
+                <input name="warehouse[image]" type="text" class="form-control" id="image" placeholder="Enter Image URL">
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-success">Add Warehouse</button>
+            </div>
+        </form>
+        <a href="/warehouses">Back to Warehouses</a>
+    </div>
+</div>
+

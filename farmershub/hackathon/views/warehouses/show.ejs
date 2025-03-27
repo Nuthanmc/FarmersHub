@@ -1,0 +1,92 @@
+<% layout('layouts/boilerplate') %>
+<link rel="stylesheet" href="/stylesheets/stars.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<!-- Map Section (Adjusted size with border) -->
+<div class="col-12 mt-4">
+    <div id="map" style="height: 300px;width: 1200px; border: 2px solid #ccc; border-radius: 8px;"></div>
+</div>
+
+<div class="row mt-5">
+    <!-- Warehouse Details Section -->
+    <div class="col-lg-6">
+        <div class="card mb-3 shadow-lg border-light">
+            <div class="card-body">
+                <h3 class="card-title text-primary"><%= warehouse.title %></h3>
+                <p class="card-text text-muted"><%= warehouse.description %></p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item text-muted"><strong>Location:</strong> <%= warehouse.location %></li>
+                <li class="list-group-item"><strong>Goods Stored:</strong> <%= warehouse.goodsStored %></li>
+                <li class="list-group-item"><strong>Storage Capacity:</strong> <%= warehouse.storageCapacity %> tons</li>
+                <li class="list-group-item"><strong>Type:</strong> <%= warehouse.type %></li>
+                <li class="list-group-item"><strong>Price:</strong> ₹<%= warehouse.price %></li>
+                <li class="list-group-item"><strong>Availability:</strong> <%= warehouse.availability ? 'Available' : 'Not Available' %></li>
+            </ul>
+            <% if (currentUser && warehouse.author && warehouse.author.equals(currentUser._id)) { %>
+            <div class="card-body d-flex justify-content-between">
+                <a class="btn btn-warning" href="/warehouses/<%= warehouse._id %>/edit">Edit</a>
+                <form class="d-inline" action="/warehouses/<%= warehouse._id %>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+            <% } %>
+            <div class="card-footer text-muted d-flex justify-content-between align-items-center">
+                <small>
+                    Last updated: 
+                    <% if (warehouse.updatedAt) { %>
+                        <%= new Date(warehouse.updatedAt).toLocaleString() %>
+                    <% } else { %>
+                        Not available
+                    <% } %>
+                </small>
+                <a href="/warehouses" class="btn btn-secondary">Back to Warehouses</a>
+                <a href="/warehouses/<%= warehouse._id %>/book" class="btn btn-primary">Book This Warehouse</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Section with Border -->
+    <div class="col-lg-6">
+        <% if (warehouse.image) { %>
+            <img src="<%= warehouse.image %>" class="img-fluid rounded-start border" style="height: 75%; object-fit: cover;" alt="<%= warehouse.title %>">
+        <% } else { %>
+            <img src="https://via.placeholder.com/300x200.png?text=No+Image+Available"
+                 class="img-fluid rounded-start border" style="height: 75%; object-fit: cover;" alt="No Image Available">
+        <% } %>
+    </div>
+</div>
+
+    
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+const maptilerApiKey = '<%- process.env.MAPTILER_API_KEY %>';
+const warehouseLocation = <%- JSON.stringify(warehouse.geometry.coordinates) %>; // Extract the correct coordinates
+
+// Ensure the coordinates are in the form [longitude, latitude]
+const longitude = warehouseLocation[0];
+const latitude = warehouseLocation[1];
+
+// Initialize the MapTiler map
+maptilersdk.config.apiKey = maptilerApiKey;
+
+const map = new maptilersdk.Map({
+    container: 'map',
+    style: maptilersdk.MapStyle.BRIGHT,
+    center: [longitude, latitude],  // Center the map based on warehouse coordinates
+    zoom: 10  // Adjust zoom level as necessary
+});
+
+// Add a marker for the warehouse location
+new maptilersdk.Marker()
+    .setLngLat([longitude, latitude])
+    .setPopup(
+        new maptilersdk.Popup({ offset: 25 })
+            .setHTML(
+                `<h3>${'<%= warehouse.title %>'}</h3><p>${'<%= warehouse.location %>'}</p>`
+            )
+    )
+    .addTo(map);
+</script>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Labours</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+    
+        /* Navbar */
+        .navbar {
+            background-color: #4caf50;
+            padding: 10px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    
+        .navbar .brand {
+            color: #fff;
+            font-size: 1.8rem; /* Increased font size for brand */
+            font-weight: bold;
+            text-decoration: none;
+        }
+    
+        .navbar-links {
+            display: flex;
+            gap: 15px;
+        }
+    
+        .navbar-links a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+    
+        .navbar-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    
+        h1 {
+            text-align: center;
+            color: #333;
+            margin: 20px 0;
+        }
+    
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+    
+        /* Search Form */
+        .search-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px auto;
+            max-width: 700px; /* Increased max-width */
+        }
+    
+        .search-form input[type="text"] {
+            width: 100%;
+            padding: 15px 20px; /* Increased padding */
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 15px; /* Increased margin */
+            font-size: 18px; /* Increased font size */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            background-color: #fff;
+            color: #333;
+        }
+    
+        .search-form input[type="text"]:focus {
+            border-color: #4caf50;
+            outline: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    
+        .search-form button {
+            background-color: #007bff;
+            border: none;
+            color: white;
+            padding: 12px 25px; /* Increased padding */
+            font-size: 18px; /* Increased font size */
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+    
+        .search-form button:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+        }
+    
+        /* Cards */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+            gap: 30px; /* Increased gap */
+            justify-content: center;
+            margin-bottom: 40px; /* Increased margin bottom */
+        }
+    
+        .card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 350px; /* Increased height */
+        }
+    
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+    
+        .card img {
+            width: 100%;
+            height: 220px; /* Increased image height */
+            object-fit: cover;
+        }
+    
+        .card h2 {
+            font-size: 22px; /* Increased font size */
+            color: #333;
+            margin: 15px 0;
+        }
+    
+        .card p {
+            font-size: 18px; /* Increased font size */
+            color: #555;
+            margin: 5px 0;
+        }
+    
+        .card a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            transition: color 0.3s;
+            margin-top: 10px;
+        }
+    
+        .card a:hover {
+            color: #0056b3;
+        }
+    
+        /* Footer */
+        footer {
+            background-color: #4caf50;
+            color: #fff;
+            text-align: center;
+            padding: 15px; /* Increased padding */
+            margin-top: auto;
+        }
+    
+        footer p {
+            font-size: 16px; /* Increased font size */
+        }
+    
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .cards {
+                grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+            }
+        }
+    
+        @media (max-width: 480px) {
+            .cards {
+                grid-template-columns: 1fr; /* 1 card per row */
+            }
+        }
+    </style>
+    
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/" class="brand">LabourHub</a>
+            <div class="navbar-links">
+                <a href="/">Home</a>
+                <a href="/labours/new">Register</a>
+                <a href="/login">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <form action="/labours/search" method="GET" class="search-form" style="margin-bottom: 20px;">
+        <label for="search">Search Labour</label>
+        <input 
+          type="text" 
+          id="search" 
+          name="query" 
+          placeholder="Search by name or location" 
+          style="width: 100%; padding: 15px 20px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px; background-color: #f0f0f0; color: #333;">
+        <button type="submit" style="margin-top: 10px; background-color: #007bff; border: none; color: white; padding: 12px 25px; font-size: 18px; border-radius: 5px; cursor: pointer;">
+          Search
+        </button>
+    </form>
+    
+    <div class="container">
+        <div class="cards">
+            <% for(let labour of labours) { %>
+                <div class="card">
+                    <img src="<%= labour.image || 'https://via.placeholder.com/200x200.png?text=No+Image' %>" alt="Labour Image">
+                    <h2><a href="/labours/<%= labour._id %>"><%= labour.name %></a></h2>
+                    <p><strong>Location:</strong> <%= labour.location %></p>
+                    <p><strong>Status:</strong> 
+                        <% if (labour.availability) { %>
+                            <span style="color: green;">Available</span>
+                        <% } else { %>
+                            <span style="color: red;">Not Available</span>
+                        <% } %>
+                    </p>
+                    <a href="/labours/<%= labour.id %>">View Details</a>
+                </div>
+            <% } %>
+        </div>
+        
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 FarmersHub</p>
+    </footer>
+</body>
+
+</html>

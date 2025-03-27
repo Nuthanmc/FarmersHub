@@ -1,0 +1,223 @@
+<style>
+    /* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fixed Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #1976d2;  /* Blue for the navbar */
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000; /* Ensure navbar stays on top */
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+}
+
+.navbar a:hover {
+    background-color: #1565c0; /* Darker blue on hover */
+}
+
+/* Main Content Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5; /* Light grey background */
+    margin-top: 80px; /* Space for fixed navbar */
+    color: black; /* Black for text */
+}
+
+h3 {
+    color: black; /* Black for the heading */
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Container for the chat cards */
+.chat-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+/* Style for individual chat cards */
+.chat-card {
+    background-color: white; /* White for cards */
+    border: 1px solid #000; /* Black border */
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 300px;
+    flex: 0 1 calc(33.33% - 1.5rem);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chat-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.chat-card p {
+    margin: 0.75rem 0;
+}
+
+.chat-card .msg {
+    margin-top: 1.25rem;
+    background-color: #eeeeee; /* Light grey for message section */
+    padding: 1rem;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+/* Style for the button group (edit, delete, show buttons) */
+.chat-card .button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    gap: 1rem;
+}
+
+/* Button Styles */
+.chat-card button {
+    background-color: #2196f3; /* Blue for buttons */
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.chat-card button:hover {
+    background-color: #1976d2; /* Darker blue on hover */
+    transform: scale(1.05);
+}
+
+.chat-card button:active {
+    background-color: #1565c0; /* Even darker blue on button press */
+}
+
+/* Form Button Styles (New Chat and Home) */
+.inline-form button {
+    background-color: #2196f3; /* Blue for form buttons */
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 0.5rem;
+    transition: background-color 0.3s;
+}
+
+.inline-form button:hover {
+    background-color: #1976d2; /* Darker blue on hover */
+}
+
+/* Style for date and time */
+.chat-card .timestamp {
+    font-size: 0.875rem;
+    color: #1976d2; /* Blue for timestamp */
+}
+
+.chat-card .timestamp span {
+    font-weight: bold;
+}
+
+/* Footer Styling */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #1976d2; /* Blue for the footer */
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .chat-card {
+        flex: 0 1 calc(50% - 1.5rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .chat-card {
+        flex: 0 1 100%;
+    }
+
+    .navbar a {
+        font-size: 0.9rem;
+    }
+}
+
+</style>
+<!-- Fixed Navbar -->
+<div class="navbar">
+    <a href="/" class="navbar-item">Home</a>
+    <a href="/chathub/new" class="navbar-item">New Chat</a>
+    <a href="/logout" class="navbar-item">Logout</a>
+</div>
+
+<!-- Page Content -->
+<h3>All Chats</h3>
+
+<!-- Displaying the chats -->
+<div class="chat-container">
+    <% for (let chat of chats) { %>
+        <div class="chat-card">
+            <!-- Chat details -->
+            <p><strong>From:</strong> <i><%= chat.from %></i></p>
+            <div class="msg">
+                <p><%= chat.msg %></p>
+            </div>
+            <div class="button-group">
+                <form method="GET" action="/chathub/<%= chat._id %>/edit">
+                    <button>Edit</button>
+                </form>
+                <form method="POST" action="/chathub/<%= chat._id %>?_method=DELETE">
+                    <button>Delete</button>
+                </form>
+                <form method="GET" action="/chathub/<%= chat._id %>">
+                    <button>Show</button>
+                </form>
+            </div>
+            <!-- Received by info -->
+            <p><strong>Received by:</strong> <i><%= chat.to %></i></p>
+            <hr/>
+            <!-- Timestamp -->
+            <p class="timestamp">
+                <span><%= chat.created_at.toString().split(" ")[4] %></span> 
+                <%= chat.created_at.toString().split(" ").slice(0, 4).join("-") %>
+            </p>
+        </div>
+    <% } %>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+    &copy; 2025 Farmers Hub
+</div>

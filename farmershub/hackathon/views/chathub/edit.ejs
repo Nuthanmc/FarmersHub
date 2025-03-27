@@ -1,0 +1,65 @@
+<% layout('layouts/boilerplate') %>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #ffe6f0; /* Light pink background for the page */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center; /* Center the card horizontally */
+        align-items: center; /* Center the card vertically */
+        height: 100vh; /* Full screen height */
+    }
+
+    .form-card {
+        background-color: #ffcce6; /* Card background color */
+        border: 1px solid #ff99c2; /* Slightly darker pink border */
+        border-radius: 10px; /* Rounded corners */
+        padding: 2rem; /* Padding inside the card */
+        width: 40%; /* Card takes up 40% of the page width */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    }
+
+    .form-card p {
+        margin-bottom: 1rem; /* Add spacing between paragraphs */
+        color: #333; /* Darker text for better readability */
+    }
+
+    .form-card textarea {
+        width: 100%; /* Make the textarea fill the card width */
+        border: 1px solid #ff99c2; /* Matching border color */
+        border-radius: 5px; /* Rounded corners for textarea */
+        padding: 0.5rem; /* Padding inside textarea */
+        font-size: 1rem; /* Font size */
+        resize: none; /* Disable resizing */
+    }
+
+    .form-card button {
+        background-color: #ff80b3; /* Button background color */
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 5px; /* Rounded corners */
+        font-size: 1rem; /* Font size */
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-top: 1rem; /* Space above the button */
+    }
+
+    .form-card button:hover {
+        background-color: #e67399; /* Darker pink on hover */
+    }
+</style>
+
+<body>
+    <div class="form-card">
+        <p>Edit Your Chat: <%= chat._id %></p> 
+        <p>This chat was sent from <b><%= chat.from %></b> to <b><%= chat.to %></b></p>
+        <form method="POST" action="/chathub/<%= chat._id %>?_method=PUT">
+            <textarea name="msg" rows="6" cols="50"><%= chat.msg %></textarea>
+            <br>
+            <button>Edit!</button>
+        </form>
+    </div>
+</body>
+

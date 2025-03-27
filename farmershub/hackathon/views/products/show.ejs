@@ -1,0 +1,199 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="container my-5">
+    <h1 class="text-center text-success mb-5">Product Details</h1>
+
+    <div class="card mb-4 shadow-lg border-0 rounded-3">
+        <div class="row g-0">
+            <!-- Image Section -->
+            <div class="col-md-4">
+                <% if (product.image) { %>
+                    <img src="<%= product.image %>" class="img-fluid rounded-start h-100" alt="<%= product.name %>">
+                <% } else { %>
+                    <img src="https://via.placeholder.com/300x200.png?text=No+Image+Available"
+                         class="img-fluid rounded-start h-100" alt="Default Product Image">
+                <% } %>
+            </div>
+
+            <!-- Details Section -->
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h3 class="card-title text-primary fw-bold"><%= product.name %></h3>
+                    <p class="card-text text-muted"><%= product.description || "No description available for this product." %></p>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Type:</strong> <%= product.type %></li>
+                        <li class="list-group-item"><strong>Price:</strong> ₹<%= product.price %></li>
+                        <li class="list-group-item"><strong>Stock:</strong> <%= product.stock %> units</li>
+                        <li class="list-group-item">
+                            <strong>Posted By:</strong> 
+                            <% if (product.userId) { %>
+                                <a href="/users/<%= product.userId %>">View Seller</a>
+                            <% } else { %>
+                                <span class="text-muted">Unknown</span>
+                            <% } %>
+                        </li>
+                    </ul>
+
+                    <!-- Action Buttons -->
+                    <div class="mt-3 d-flex justify-content-between">
+                        <!-- Edit Button -->
+                        <a href="/products/<%= product._id %>/edit" class="btn btn-primary">Edit</a>
+
+                        <!-- Delete Button -->
+                        <form action="/products/<%= product._id %>?_method=DELETE" method="POST" class="d-inline">
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
+                        </form>
+
+                        <!-- Buy Now Button -->
+                        <a href="/products/buy/<%= product._id %>" class="btn btn-success">Buy Now</a>
+
+                        <!-- Add to Cart Button -->
+                        <form action="/products/cart/add" method="POST" class="d-inline">
+                            <input type="hidden" name="productId" value="<%= product._id %>">
+                            <button type="submit" class="btn btn-warning">Add to Cart</button>
+                        </form>
+
+                        <!-- Back Button -->
+                        <a href="/products" class="btn btn-outline-secondary">Back to Products</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Custom Styles -->
+<style>
+    /* General Page Styles */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .text-success {
+        color: #28a745;
+    }
+
+    .text-muted {
+        color: #6c757d;
+    }
+
+    .card {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+        color: #007bff;
+        margin-bottom: 15px;
+    }
+
+    .list-group-item {
+        font-size: 1rem;
+        padding: 10px;
+        border: none;
+    }
+
+    .list-group-item strong {
+        color: #007bff;
+    }
+
+    .list-group-item a {
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .list-group-item a:hover {
+        color: #28a745;
+    }
+
+    /* Button Styles */
+    .btn {
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .btn:hover {
+        transform: scale(1.05);
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        color: #fff;
+    }
+
+    .btn-danger:hover {
+        background-color: #c82333;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        color: #fff;
+    }
+
+    .btn-success:hover {
+        background-color: #218838;
+    }
+
+    .btn-warning {
+        background-color: #ffc107;
+        color: #212529;
+    }
+
+    .btn-warning:hover {
+        background-color: #e0a800;
+    }
+
+    .btn-outline-secondary {
+        background-color: transparent;
+        border-color: #6c757d;
+        color: #6c757d;
+    }
+
+    .btn-outline-secondary:hover {
+        background-color: #6c757d;
+        color: #fff;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .row.g-0 {
+            flex-direction: column;
+        }
+
+        .col-md-4, .col-md-8 {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+
+        .btn {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    }
+</style>

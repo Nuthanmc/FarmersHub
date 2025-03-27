@@ -1,0 +1,113 @@
+<% layout('layouts/boilerplate') %>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f8f9fa; /* Light gray background for the page */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center; /* Center the card horizontally */
+        align-items: center; /* Center the card vertically */
+        height: 100vh; /* Full screen height */
+        color: #333; /* Default text color */
+    }
+
+    .form-card {
+        background-color: #ffffff; /* White background for the form card */
+        border: 1px solid #d1d8e0; /* Light gray border */
+        border-radius: 15px; /* Rounded corners for a softer look */
+        padding: 3rem; /* Increased padding for larger form */
+        width: 60%; /* Card takes up 60% of the page width */
+        max-width: 600px; /* Max width for larger screens */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Larger shadow for a more prominent effect */
+        transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for hover effect */
+    }
+
+    .form-card:hover {
+        transform: scale(1.05); /* Slight zoom effect on hover */
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15); /* Darker shadow on hover */
+    }
+
+    .form-card h3 {
+        text-align: center;
+        margin-bottom: 2rem; /* Increased space below the heading */
+        font-size: 2rem; /* Larger font size for the heading */
+        color: #6f42c1; /* Purple color for the heading */
+    }
+
+    .form-card input,
+    .form-card textarea {
+        width: 100%; /* Make inputs and textarea fill the card width */
+        border: 1px solid #d1d8e0; /* Matching border color */
+        border-radius: 8px; /* Rounded corners for inputs */
+        padding: 0.75rem; /* Padding inside inputs and textarea */
+        font-size: 1.2rem; /* Larger font size for inputs */
+        margin-bottom: 1.5rem; /* Increased space below each input */
+        transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transition effect */
+    }
+
+    .form-card input:focus,
+    .form-card textarea:focus {
+        border-color: #6f42c1; /* Purple border on focus */
+        box-shadow: 0 0 8px rgba(111, 66, 193, 0.4); /* Purple glow effect */
+    }
+
+    .form-card textarea {
+        resize: none; /* Disable resizing for the textarea */
+        min-height: 140px; /* Minimum height for better readability */
+    }
+
+    .form-card button {
+        background-color: #6f42c1; /* Purple button */
+        color: white;
+        border: none;
+        padding: 1rem 2rem; /* Larger padding for better touch targets */
+        border-radius: 8px; /* Rounded corners for the button */
+        font-size: 1.2rem; /* Larger font size */
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+        width: 100%; /* Button stretches to full width */
+    }
+
+    .form-card button:hover {
+        background-color: #5a2e8b; /* Darker purple on hover */
+        transform: scale(1.05); /* Slight zoom effect on hover */
+    }
+
+    .form-card button:active {
+        background-color: #4a2473; /* Even darker on active */
+    }
+
+    /* Media Query for responsiveness */
+    @media (max-width: 768px) {
+        .form-card {
+            width: 85%; /* Make the card responsive on tablets and mobile */
+        }
+    }
+
+    @media (max-width: 480px) {
+        .form-card {
+            padding: 2rem; /* Reduced padding for very small screens */
+        }
+
+        .form-card h3 {
+            font-size: 1.8rem; /* Adjust heading size */
+        }
+
+        .form-card input,
+        .form-card textarea,
+        .form-card button {
+            font-size: 1.1rem; /* Smaller font size for inputs and buttons on smaller screens */
+        }
+    }
+</style>
+
+<div class="form-card">
+    <h3>Write New Chat</h3>
+    <form method="POST" action="/chathub">
+        <input type="text" name="from" placeholder="Who are you" required>
+        <textarea name="msg" rows="6" placeholder="Type your message here!" required></textarea>
+        <input type="text" name="to" placeholder="Add receiver" required>
+        <button type="submit">Send</button>
+    </form>
+</div>

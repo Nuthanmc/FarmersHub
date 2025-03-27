@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Labour Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+    .detail {
+      margin: 15px 0;
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.1em;
+      padding: 8px 0;
+      border-bottom: 1px solid #ddd;
+    }
+    .detail span {
+      font-weight: bold;
+      color: #555;
+    }
+    .image-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .image-container img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 2px solid #ddd;
+    }
+    .availability {
+      text-align: center;
+      padding: 10px;
+      border-radius: 5px;
+      color: white;
+      margin-top: 15px;
+      font-size: 1.1em;
+    }
+    .availability.available {
+      background-color: #28a745;
+    }
+    .availability.unavailable {
+      background-color: #dc3545;
+    }
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    .actions a, .actions button {
+      text-decoration: none;
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.3s ease-in-out;
+    }
+    .actions a:hover, .actions button:hover {
+      background-color: #0056b3;
+    }
+    .actions button.delete {
+      background-color: #dc3545;
+    }
+    .actions button.delete:hover {
+      background-color: #b02a37;
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #007bff;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.3s ease-in-out;
+    }
+    .back-link:hover {
+      color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Labour Details</h1>
+    <div class="image-container">
+      <img src="<%= labour.image %>" alt="Labour Image">
+    </div>
+    <div class="detail"><span>Name:</span> <%= labour.name %></div>
+    <div class="detail"><span>Email:</span> <%= labour.email %></div>
+    <div class="detail"><span>Phone:</span> <%= labour.phone %></div>
+    <div class="detail"><span>Skill:</span> <%= labour.skill %></div>
+    <div class="detail"><span>Location:</span> <%= labour.location %></div>
+    <div class="availability <%= labour.availability ? 'available' : 'unavailable' %>">
+      <%= labour.availability ? 'Available for Work' : 'Currently Unavailable' %>
+    </div>
+    <div class="actions">
+      <a href="/labours/<%= labour.id %>/edit">Edit</a>
+      <a href="">Hire</a>
+      <form action="/labours/<%= labour._id %>?_method=DELETE" method="POST" style="display:inline;">
+        <button class="delete">Delete</button>
+      </form>
+    </div>
+    <a href="/labours" class="back-link">All Labours</a>
+  </div>
+</body>
+</html>
+

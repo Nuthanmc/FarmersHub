@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Food Security Technology</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome for icons -->
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    
+        /* Body */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #e3f2fd, #ffffff);
+            margin: 0;
+            padding: 0;
+        }
+    
+        /* Header */
+        header {
+            background: linear-gradient(135deg,#4caf50, #009688);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: fadeInDown 1s ease-out;
+        }
+    
+        header h1 {
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+    
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+    
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+    
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+    
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1.5s ease;
+        }
+    
+        /* Record Details */
+        .record-details {
+            margin-bottom: 30px;
+        }
+    
+        .record-details h2 {
+            font-size: 1.8rem;
+            color: #009688;
+            margin-bottom: 15px;
+            position: relative;
+        }
+    
+        .record-details h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #009688;
+            margin: 8px 0;
+            border-radius: 5px;
+        }
+    
+        .record-details p {
+            font-size: 1rem;
+            margin: 8px 0;
+            color: #333;
+        }
+    
+        .record-details .highlight {
+            font-weight: bold;
+            color: #009688;
+        }
+    
+        /* Actions */
+        .actions {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center; /* Center buttons horizontally */
+            align-items: center;    /* Center buttons vertically (if needed) */
+            gap: 20px;              /* Space between buttons */
+        }
+      
+        .actions a, .actions button {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            background: linear-gradient(135deg,#4caf50, #009688);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+            font-size: 1rem;
+            text-align: center;
+        }
+    
+        .actions a:hover, .actions button:hover {
+            background: linear-gradient(135deg, #4caf50, #009688);
+            transform: scale(1.05);
+        }
+    
+        /* New Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .action-buttons button {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .action-buttons button:hover {
+            background: #388e3c;
+        }
+    
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    
+        /* Media Queries */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+    
+            nav ul {
+                gap: 10px;
+            }
+    
+            .container {
+                padding: 15px;
+            }
+    
+            .actions {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>    
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>View Food Security Technology</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="record-details">
+            <h2><%= record.title %></h2>
+
+            <p><span class="highlight">Description:</span> <%= record.description %></p>
+
+            <% if (technology.salientFeatures && technology.salientFeatures.length > 0) { %>
+                <p><span class="highlight">Salient Features:</span></p>
+                <ul>
+                    <% technology.salientFeatures.forEach(feature => { %>
+                        <li><%= feature %></li>
+                    <% }) %>
+                </ul>
+            <% } %>
+
+            <% if (technology.benefits && technology.benefits.length > 0) { %>
+                <p><span class="highlight">Benefits:</span></p>
+                <ul>
+                    <% technology.benefits.forEach(benefit => { %>
+                        <li><%= benefit %></li>
+                    <% }) %>
+                </ul>
+            <% } %>
+
+            <p><span class="highlight">Cost:</span> <%= technology.cost %></p>
+            <p><span class="highlight">Developer Name:</span> <%= technology.developer.name %></p>
+            <p><span class="highlight">Developer Organization:</span> <%= technology.developer.organization %></p>
+
+            <p><span class="highlight">Contact Details:</span></p>
+            <ul>
+                <li><span class="highlight">Director:</span> <%= technology.contactDetails.director || "N/A" %></li>
+                <li><span class="highlight">Email:</span> <%= technology.contactDetails.email %></li>
+                <li><span class="highlight">Address:</span> <%= technology.contactDetails.address %></li>
+                <% if (technology.contactDetails.website) { %>
+                    <li><span class="highlight">Website:</span> 
+                        <a href="<%= technology.contactDetails.website %>" target="_blank"><%= technology.contactDetails.website %></a>
+                    </li>
+                <% } %>
+            </ul>
+        </div>
+
+        <!-- Actions -->
+        <div class="actions">
+            <a href="/foodsecurity/<%= technology._id %>/edit">Edit</a>
+            <form action="/foodsecurity/<%= technology._id %>?_method=DELETE" method="POST" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+
+        <!-- New Action Buttons -->
+        <div class="action-buttons">
+            <button onclick="buyNow('<%= technology._id %>')"><i class="fas fa-shopping-cart"></i> Buy Now</button>
+        </div>
+    </div>
+
+    <script>
+        function buyNow(productId) {
+            // Redirect to the checkout page with the product ID
+            window.location.href = `/checkout/${productId}`;
+        }
+    </script>
+</body>
+</html>
