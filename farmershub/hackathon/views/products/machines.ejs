@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Machine Wages - Labor Network</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Farm Machine Wages</h1>
+            <p>Rent or lend farming equipment with fellow laborers</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#available-machines">Available Machines</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#list-machine">List Your Machine</a></li>
+                <li><a href="#Association">Labor Association</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="available-machines">
+            <h2>Available Machines for Wages</h2>
+
+            <div class="category-tabs">
+                <div class="category-tab active" data-category="all">All Equipment</div>
+                <div class="category-tab" data-category="tractors">Tractors</div>
+                <div class="category-tab" data-category="trucks">Trucks</div>
+                <div class="category-tab" data-category="harvesters">Harvesters</div>
+                <div class="category-tab" data-category="other">Other Equipment</div>
+            </div>
+
+            <div class="machine-carousel">
+                <div class="carousel-container">
+                    <% machines.forEach(machine => { %>
+                        <div class="machine-card" data-category="<%= machine.category %>">
+                            <img src="<%= machine.image %>" alt="<%= machine.name %>">
+                            <div class="machine-info">
+                                <h3><%= machine.name %></h3>
+                                <p><%= machine.description %></p>
+                                <div class="wage-duration">
+                                    <label>Wage Duration:</label>
+                                    <select>
+                                        <option>1 Day</option>
+                                        <option>1 Week</option>
+                                        <option>1 Month</option>
+                                    </select>
+                                </div>
+                                <p class="price">$<%= machine.pricePerDay %> / day</p>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            </div>
+        </section>
+
+        <section id="list-machine">
+            <h2>List Your Machine for Wage</h2>
+            <form action="/add-machine" method="POST">
+                <div class="form-group">
+                    <label for="machine-name">Machine Name:</label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="machine-category">Category:</label>
+                    <select name="category" required>
+                        <option value="tractors">Tractor</option>
+                        <option value="trucks">Truck</option>
+                        <option value="harvesters">Harvester</option>
+                        <option value="other">Other Equipment</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="machine-image">Image URL:</label>
+                    <input type="url" name="image" required>
+                </div>
+                <div class="form-group">
+                    <label for="machine-desc">Description:</label>
+                    <textarea name="description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="machine-price">Price per Day ($):</label>
+                    <input type="number" name="pricePerDay" min="1" required>
+                </div>
+                <button type="submit">List Machine</button>
+            </form>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <p>Contact: <a href="mailto:wages@farmlabor.com">wages@farmlabor.com</a></p>
+            <p>Farm Machine Wages Network</p>
+        </div>
+    </footer>
+</body>
+</html>

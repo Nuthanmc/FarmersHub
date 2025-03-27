@@ -1,0 +1,242 @@
+
+        /* General Styles */ 
+        Body { 
+            Font-family: Arial, sans-serif; 
+            Margin: 0; 
+            Padding: 0; 
+            Line-height: 1.6; 
+            Color: #333; 
+        } 
+ 
+        .container { 
+            Width: 90%; 
+            Max-width: 1200px; 
+            Margin: 0 auto; 
+            Padding: 0 15px; 
+        } 
+ 
+        Header { 
+            Background: #4CAF50; 
+            Color: white; 
+            Padding: 20px 0; 
+            Text-align: center; 
+        } 
+ 
+        Nav { 
+            Background: #333; 
+            Color: white; 
+        } 
+ 
+        Nav ul { 
+            List-style: none; 
+            Padding: 0; 
+            Margin: 0; 
+            Display: flex; 
+            Justify-content: center; 
+            Flex-wrap: wrap; 
+        } 
+ 
+        Nav ul li { 
+            Margin: 0 15px; 
+        } 
+ 
+        Nav ul li a { 
+            Color: white; 
+            Text-decoration: none; 
+            Padding: 15px 0; 
+            Display: block; 
+        } 
+ 
+        /* Machine Carousel Layout */ 
+        .machine-carousel { 
+            Position: relative; 
+            Margin: 30px 0; 
+            Overflow: hidden; 
+        } 
+ 
+        .carousel-container { 
+            Display: flex; 
+            Transition: transform 0.5s ease; 
+            Padding: 10px 0; 
+        } 
+ 
+        .machine-card { 
+            Border: 1px solid #ddd; 
+            Border-radius: 8px; 
+            Overflow: hidden; 
+            Box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+            Min-width: 250px; 
+            Margin: 0 10px; 
+            Flex: 0 0 auto; 
+        } 
+ 
+        .machine-card img { 
+            Width: 100%; 
+            Height: 180px; 
+            Object-fit: cover; 
+        } 
+ 
+        .machine-info { 
+            Padding: 15px; 
+        } 
+ 
+        .machine-info h3 { 
+            Margin-top: 0; 
+        } 
+ 
+        .wage-duration { 
+            Margin: 10px 0; 
+        } 
+ 
+        .wage-duration select { 
+            Width: 100%; 
+            Padding: 8px; 
+            Border: 1px solid #ddd; 
+            Border-radius: 4px; 
+        } 
+ 
+        .price { 
+            Font-weight: bold; 
+            Color: #4CAF50; 
+            Font-size: 1.2em; 
+        } 
+ 
+        /* Carousel Navigation */ 
+        .carousel-nav { 
+            Display: flex; 
+            Justify-content: space-between; 
+            Margin-top: 15px; 
+        } 
+ 
+        .carousel-btn { 
+            Background: #4CAF50; 
+            Color: white; 
+            Border: none; 
+            Padding: 10px 15px; 
+            Border-radius: 4px; 
+            Cursor: pointer; 
+            Font-size: 1em; 
+        } 
+ 
+        .carousel-btn:hover { 
+            Background: #45a049; 
+        } 
+ 
+        .carousel-btn:disabled { 
+            Background: #cccccc; 
+            Cursor: not-allowed; 
+        } 
+ 
+        /* Category Tabs */ 
+        .category-tabs { 
+            Display: flex; 
+            Margin-bottom: 20px; 
+            Border-bottom: 1px solid #ddd; 
+        } 
+ 
+        .category-tab { 
+            Padding: 10px 20px; 
+            Cursor: pointer; 
+            Border-bottom: 3px solid transparent; 
+        } 
+ 
+        .category-tab.active { 
+            Border-bottom-color: #4CAF50; 
+            Font-weight: bold; 
+        } 
+ 
+        /* Form Styles */ 
+        Form { 
+            Background: #f9f9f9; 
+            Padding: 20px; 
+            Border-radius: 8px; 
+            Max-width: 600px; 
+            Margin: 0 auto; 
+        } 
+ 
+        .form-group { 
+            Margin-bottom: 15px; 
+        } 
+ 
+        .form-group label { 
+            Display: block; 
+            Margin-bottom: 5px; 
+            Font-weight: bold; 
+        } 
+ 
+        .form-group input, 
+        .form-group textarea, 
+        .form-group select { 
+            Width: 100%; 
+            Padding: 8px; 
+            Border: 1px solid #ddd; 
+            Border-radius: 4px; 
+        } 
+ 
+        Button { 
+            Background: #4CAF50; 
+            Color: white; 
+            Border: none; 
+            Padding: 10px 15px; 
+            Border-radius: 4px; 
+            Cursor: pointer; 
+            Font-size: 1em; 
+        } 
+ 
+        Button:hover { 
+            Background: #45a049; 
+        } 
+ 
+        /* Steps Section */ 
+        .steps { 
+            Display: flex; 
+            Justify-content: space-between; 
+            Flex-wrap: wrap; 
+            Gap: 20px; 
+        } 
+ 
+        .step { 
+            Flex: 1; 
+            Min-width: 200px; 
+            Background: #f9f9f9; 
+            Padding: 20px; 
+            Border-radius: 8px; 
+            Text-align: center; 
+        } 
+ 
+        Footer { 
+            Background: #333; 
+            Color: white; 
+            Text-align: center; 
+            Padding: 20px 0; 
+            Margin-top: 30px; 
+        } 
+ 
+        Footer a { 
+            Color: #4CAF50; 
+        } 
+ 
+        @media (max-width: 768px) { 
+            .category-tabs { 
+                Flex-wrap: wrap; 
+            } 
+             
+            .category-tab { 
+                Flex: 1 0 auto; 
+                Text-align: center; 
+            } 
+             
+            .carousel-container { 
+                Overflow-x: auto; 
+                Scroll-snap-type: x mandatory; 
+                -webkit-overflow-scrolling: touch; 
+            } 
+             
+            .machine-card { 
+                Scroll-snap-align: start; 
+            } 
+             
+            .carousel-nav { 
+                Display: none; 
+            } 
+        } 
