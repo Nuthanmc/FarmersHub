@@ -339,8 +339,28 @@ details p {
     margin-top: 1rem;
     font-size: 0.9rem;
 }
-
-
+.ticker {
+    display: flex;
+    overflow: hidden;
+    white-space: nowrap;
+    background: #222;
+    padding: 10px;
+}
+.ticker div {
+    display: inline-block;
+    padding: 0 15px;
+    animation: scroll 10s linear infinite;
+}
+@keyframes scroll {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+.up { color: #0f0; }
+.down { color: #f00; }
         /* Animations */
         @keyframes fadeIn {
             from {
@@ -386,9 +406,44 @@ details p {
 </head>
 
 <body>
+    <script>
+        const cropData = [
+            { name: "Wheat", price: 2150, change: 1.2 },
+            { name: "Rice", price: 2900, change: -0.5 },
+            { name: "Corn", price: 1800, change: 0.8 },
+            { name: "Soybean", price: 3500, change: -1.0 },
+            { name: "Sugarcane", price: 3000, change: 0.5 },
+            { name: "Cotton", price: 5000, change: -0.2 },
+            { name: "Potato", price: 1200, change: 0.3 },
+            { name: "Tomato", price: 2500, change: -0.8 },
+            { name: "Onion", price: 1800, change: 0.6 },
+            { name: "Garlic", price: 3000, change: -0.4 },
+            { name:"Ginger", price: 4000, change: 0.7 },
+            { name: "Chilli", price: 3500, change: -0.3 },
+            { name: "Cabbage", price: 1500, change: 0.4 },
+            { name: "Cauliflower", price: 2000, change: -0.6 },
+            { name: "Brinjal", price: 2500, change: 0.2 },
+            { name: "Capsicum", price: 3000, change: -0.1 },
+            { name: "Carrot", price: 1800, change: 0.5 },
+            { name: "Beetroot", price: 2000, change: -0.2 },
+            { name: "Radish", price: 1500, change: 0.3 }
+        ];
+
+        function updateTicker() {
+            const ticker = document.getElementById("ticker");
+            ticker.innerHTML = cropData.map(crop => {
+                return `<div>${crop.name}: ₹${crop.price} <span class="${crop.change >= 0 ? 'up' : 'down'}">${crop.change}%</span></div>`;
+            }).join(" ");
+        }
+
+        setInterval(updateTicker, 2000); // Refresh every 2 seconds
+        updateTicker();
+    </script>
+    <div class="ticker" id="ticker"></div>
     <!-- Header Section -->
     <header>
         <nav>
+
             <h1 class="logo">Farmers Hub</h1>
             <div class="nav-links">
                 <a href="http://127.0.0.1:5000">Digital Solutions</a>
